@@ -100,7 +100,7 @@ def get_volhack_response(intent, session):
     volhacks_response = ["""What's going on? Why, only Volhacks - the littest thing to happen on UT's campus.
     Except, well, when they crushed the Gators last week.""",
                          """"If you're looking for a great time, Volhacks is going on right now.
-                         Only a scrub like a UGA grad would miss this.""" ,
+                         Only a scrub like a <say-as interpret-as="spell-out">UGA</say-as> grad would miss this.""",
                          """You're looking for plans today?
                          If you're not at Volhacks already you might as well be a Bama fan"""]
     if set(map(lambda x: x.lower(), volhacks_keyword.split(' '))).intersection(['ut', 'tennessee', 'knowxville', 'volhacks', 'volhack']):
