@@ -7,6 +7,8 @@ no_keyword: Sorry, I cannot understand you.
 
 repeat: Searching for {{keyword}} on {{date}} at {{location}}.
 
+result: Found the event {{name}} on {{date}} at {{location}}.
+
 round: Can you repeat the numbers {{ numbers|join(", ") }} backwards?
 
 win: Good job!

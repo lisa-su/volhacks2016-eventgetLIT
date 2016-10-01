@@ -8,6 +8,8 @@ from flask import Flask, render_template
 
 from flask_ask import Ask, statement, question, session
 
+from index import PartyParrot
+
 
 app = Flask(__name__)
 
@@ -42,7 +44,14 @@ def get_event_info(LOCATION, DATEE, KEYWORDZ):
     search_msg = render_template('repeat', keyword=search_keyword, location=search_location,
                                  date=search_date)
 
-    return statement(search_msg)
+    query = PartyParrot()
+    result = query.get_events(search_location, search_date, search_keyword)[0]
+
+    result_msg = render_template('result', name=result['name'], date=result['start'][:10],
+                                           location=result['location'])
+
+    #return statement(search_msg)
+    return statement(result_msg)
 
 
 if __name__ == '__main__':
