@@ -141,9 +141,24 @@ def get_event_info(intent, session):
         result_msg = "Found the event {} on {} at {}.".format(this_event['name'],
                                                               this_event['start'][:10],
                                                               this_event['location'])
+
+        if 'small_image' in this_event.keys():
+            sm = this_event['small_image']
+        else:
+            sm = None
+
+        if 'large_image' in this_event.keys():
+            lg = this_event['large_image']
+        else:
+            lg = None
+
+        if 'url' in this_event.keys():
+            u = this_event['url']
+        else:
+            u = None
+
         return build_response(session_attributes, build_speechlet_response(
-            card_title, result_msg, repromt_text, should_end_session, True, this_event['small_image'],
-            this_event['large_image'], this_event['url']))
+            card_title, result_msg, repromt_text, should_end_session, True, sm, lg, u))
 
 
 
@@ -162,9 +177,23 @@ def get_next_event(intent, session):
                                                               this_event['start'][:10],
                                                               this_event['location'])
 
+        if 'small_image' in this_event.keys():
+            sm = this_event['small_image']
+        else:
+            sm = None
+
+        if 'large_image' in this_event.keys():
+            lg = this_event['large_image']
+        else:
+            lg = None
+
+        if 'url' in this_event.keys():
+            u = this_event['url']
+        else:
+            u = None
+
         return build_response(session_attributes, build_speechlet_response(
-            card_title, result_msg, repromt_text, should_end_session, True, this_event['small_image'],
-            this_event['large_image'], this_event['url']))
+            card_title, result_msg, repromt_text, should_end_session, True, sm, lg, u))
     else:
         result_msg = "There's no result to show."
 
