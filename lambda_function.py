@@ -34,6 +34,8 @@ def on_intent(intent_request, session):
         return get_event_info(intent, session)
     elif intent_name == "GetNextIntent":
         return get_next_event(intent, session)
+    elif intent_name == "VolHacksIntent":
+        return get_volhack_response(intent, session)
     elif intent_name == "AMAZON.HelpIntent":
         return get_help_response()
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
@@ -86,6 +88,27 @@ def get_help_response():
 
 def create_remain_result_attributes(remain_results):
     return {'remain_results': remain_results}
+
+def get_volhack_response(intent, session):
+    session_attributes = {}
+    card_title = None
+    should_end_session = False
+    repromt_text = "What else do you need?"
+
+    volhacks_keyword = intent['slots']['VolHacks'].get('value')
+    volhacks_response = ["""What's going on? Why, only Volhacks - the litest thing to happen on UT's campus.
+                         Except, well, when they crushed the Gators last week.""",
+                         """"If you're looking for a great time, Volhacks is going on right now.
+                         Only a scrub like a UGA grad would miss this.""" ,
+                         """You're looking for plans today?
+                         If you're not at Volhacks already you might as well be a Bama fan"""]
+    if volhacks_keyword.contains('ut', 'tennessee', 'knowxville', 'volhacks', 'volhack'):
+        result_msg = choice(volhacks_response)
+    else:
+        result_msg = "Who really cares? You're in Vol Country now."
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, result_msg, repromt_text, should_end_session))
 
 
 def get_event_info(intent, session):
