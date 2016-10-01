@@ -96,7 +96,7 @@ def get_volhack_response(intent, session):
     repromt_text = "What else do you need?"
 
     volhacks_keyword = intent['slots']['VolHacks'].get('value')
-    volhacks_response = ["""What's going on? Why, only Volhacks - the litest thing to happen on UT's campus.
+    volhacks_response = ["""What's going on? Why, only Volhacks - the littest thing to happen on UT's campus.
                          Except, well, when they crushed the Gators last week.""",
                          """"If you're looking for a great time, Volhacks is going on right now.
                          Only a scrub like a UGA grad would miss this.""" ,
