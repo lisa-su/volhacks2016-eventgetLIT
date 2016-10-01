@@ -98,12 +98,12 @@ def get_volhack_response(intent, session):
 
     volhacks_keyword = intent['slots']['VolHacks'].get('value')
     volhacks_response = ["""What's going on? Why, only Volhacks - the littest thing to happen on UT's campus.
-                         Except, well, when they crushed the Gators last week.""",
+    Except, well, when they crushed the Gators last week.""",
                          """"If you're looking for a great time, Volhacks is going on right now.
                          Only a scrub like a UGA grad would miss this.""" ,
                          """You're looking for plans today?
                          If you're not at Volhacks already you might as well be a Bama fan"""]
-    if set(volhacks_keyword.split(' ')).intersection(['ut', 'tennessee', 'knowxville', 'volhacks', 'volhack']):
+    if set(volhacks_keyword.split(' ').map(lambda x: x.lower())).intersection(['ut', 'tennessee', 'knowxville', 'volhacks', 'volhack']):
         result_msg = choice(volhacks_response)
     else:
         result_msg = "Who really cares? You're in Vol Country now."
