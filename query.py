@@ -92,7 +92,9 @@ class PartyParrot:
 
         print response_url
 
+        print "before event"
         response = requests.get(response_url)
+        print "after event"
 
         if 'events' in response.json().keys():
             if len(response.json()["events"]) > 3:
@@ -116,12 +118,16 @@ class PartyParrot:
                     data = {
                         "longUrl": e[k]
                     }
+                    print "before url short"
                     url_shortener = requests.post(google_url, json.dumps(data), headers=headers)
+                    print "after url short"
                     new_dict[count][k] = url_shortener.json()['id']
 
                 elif k == 'venue_id':
                     temp_url = self.get_venue_url() + e[k] + "/" + "?token=" + self.get_token()
+                    print "before venue"
                     venue = requests.get(temp_url)
+                    print "after venue"
 
                     new_dict[count]['location'] = venue.json()['name']
                     new_dict[count]['location_address'] = venue.json()['address']['localized_address_display']
