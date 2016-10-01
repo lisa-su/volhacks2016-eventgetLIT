@@ -1,9 +1,3 @@
-"""
-In this file we specify default event handlers which are then populated into the handler map using metaprogramming
-Copyright Anjishnu Kumar 2015
-Happy Hacking!
-"""
-
 from ask import alexa
 import random
 
@@ -16,7 +10,8 @@ def lambda_handler(request_obj, context=None):
     input 'request_obj' is JSON request converted into a nested python object.
     """
 
-    metadata = {'user_name': 'Jennifer'}  # add your own metadata to the request using key value pairs
+    metadata = {'user_name': 'Jennifer',
+                'default_zipcode': '37996'}  # add your own metadata to the request using key value pairs
 
     ''' inject user relevant metadata into the request if you want to, here.
     e.g. Something like :
@@ -31,7 +26,7 @@ def lambda_handler(request_obj, context=None):
 @alexa.default
 def default_handler(request):
     """ The default handler gets invoked if no handler is set for a request type """
-    return alexa.respond('Just ask').with_card('Hello World')
+    return alexa.respond('Just ask')  #  .with_card('Hello World')
 
 
 @alexa.request("LaunchRequest")
@@ -60,7 +55,7 @@ def get_event_info_handler(request):
     """
     date_range = request.slots['DATEE']
     event_keyword = request.slots['KEYWORDZ']
-    location = request.slots['LOCATION']
+    location = request.slots['LOCATION'] if request.slots['LOCATION'] else request.metadata['default_zipcode']
 
     """
     TODO: Use the params to make Evenbrite API request and get the json response
