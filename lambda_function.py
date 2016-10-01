@@ -31,7 +31,9 @@ def on_intent(intent_request, session):
     intent_name = intent_request["intent"]["name"]
 
     if intent_name == "GiveMeTheInfo":
-        return get_event_info(intent)
+        return get_event_info(intent, session)
+    elif intent_name == "GetNextIntent":
+        return get_next_event(intent, session)
     elif intent_name == "AMAZON.HelpIntent":
         return get_help_response()
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
@@ -77,10 +79,15 @@ def get_help_response():
     ))
 
 
-def get_event_info(intent):
+def create_remain_result_attributes(remain_results):
+    return {'remain_results': remain_results}
+
+
+def get_event_info(intent, session):
     session_attributes = {}
     card_title = "Event Info"
     should_end_session = False
+    repromt_text = "What else do you need?"
 
     search_location = intent['slots']['LOCATION'].get('value')
     search_keyword = intent['slots']['KEYWORDZ'].get('value')
@@ -92,16 +99,40 @@ def get_event_info(intent):
         search_date = date.today().strftime('%Y-%m-%d')
 
     query = PartyParrot()
-
     result = query.get_events(search_location, search_date, search_keyword)
+
     if len(result) == 0:
         result_msg = "Sorry, no result. Please try again."
     else:
-        result = result[0]
-        result_msg = "Found the event {} on {} at {}.".format(result['name'], result['start'][:10], result['location'])
+        this_event = result.pop(0)
+        session_attributes = create_remain_result_attributes(result)
+        result_msg = "Found the event {} on {} at {}.".format(this_event['name'],
+                                                              this_event['start'][:10],
+                                                              this_event['location'])
 
     return build_response(session_attributes, build_speechlet_response(
-        card_title, result_msg, "What can I help you with?", should_end_session))
+        card_title, result_msg, repromt_text, should_end_session))
+
+
+def get_next_event(intent, session):
+    session_attributes = {}
+    should_end_session = False
+    card_title = "Event Info"
+    repromt_text = "What else do you need?"
+
+    if session.get('attributes', {}) and "remain_results" in session.get('attributes', {}) \
+            and session['attributes']['remain_results']:
+        remain_results = session['attributes']['remain_results']    # a list of remain results
+        this_event = remain_results.pop(0)
+        session_attributes = create_remain_result_attributes(remain_results)
+        result_msg = "Found the event {} on {} at {}.".format(this_event['name'],
+                                                              this_event['start'][:10],
+                                                              this_event['location'])
+    else:
+        result_msg = "There's no result to show."
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, result_msg, repromt_text, should_end_session))
 
 
 def build_speechlet_response(title, output, reprompt_text, should_end_session):
