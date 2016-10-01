@@ -89,6 +89,7 @@ def get_help_response():
 def create_remain_result_attributes(remain_results):
     return {'remain_results': remain_results}
 
+
 def get_volhack_response(intent, session):
     session_attributes = {}
     card_title = None
@@ -102,7 +103,7 @@ def get_volhack_response(intent, session):
                          Only a scrub like a UGA grad would miss this.""" ,
                          """You're looking for plans today?
                          If you're not at Volhacks already you might as well be a Bama fan"""]
-    if volhacks_keyword.contains('ut', 'tennessee', 'knowxville', 'volhacks', 'volhack'):
+    if set(volhacks_keyword.split(' ')).intersection(['ut', 'tennessee', 'knowxville', 'volhacks', 'volhack']):
         result_msg = choice(volhacks_response)
     else:
         result_msg = "Who really cares? You're in Vol Country now."
