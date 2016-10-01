@@ -1,108 +1,55 @@
-from ask import alexa
-import random
+import logging
+
+from random import randint, choice
+
+from flask import Flask, render_template
+
+from flask_ask import Ask, statement, question, session
 
 
-def lambda_handler(request_obj, context=None):
-    """
-    This is the main function to enter to enter into this code.
-    If you are hosting this code on AWS Lambda, this should be the entry point.
-    Otherwise your server can hit this code as long as you remember that the
-    input 'request_obj' is JSON request converted into a nested python object.
-    """
+app = Flask(__name__)
 
-    metadata = {'user_name': 'Jennifer',
-                'default_zipcode': '37996'}  # add your own metadata to the request using key value pairs
+ask = Ask(app, "/")
 
-    ''' inject user relevant metadata into the request if you want to, here.
-    e.g. Something like :
-    ... metadata = {'user_name' : some_database.query_user_name(request.get_user_id())}
-    Then in the handler function you can do something like -
-    ... return alexa.create_response('Hello there {}!'.format(request.metadata['user_name']))
-    '''
-
-    return alexa.route_request(request_obj, metadata)
+logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
 
-@alexa.default
-def default_handler(request):
-    """ The default handler gets invoked if no handler is set for a request type """
-    return alexa.respond('Just ask')  #  .with_card('Hello World')
+@ask.launch
+def new_search():
+
+    welcome_msg = render_template('welcome')
+
+    return question(welcome_msg)
 
 
-@alexa.request("LaunchRequest")
-def launch_request_handler(request):
-    """ Handler for LaunchRequest """
-    start_greeting = ('How YOUUU duuin brah? This is Marsala, your eventbrite asssistant coming to you live from the inside of the cylindrical container. Hit me with it.',
-                      "Greetings earthlings. This is Mar-Sala. An advanced form of intelligence, the brain child of mixing Star Trek and Star Worlds. Please specify the parameters of your query",
-                      "Hi guys. Tnis is Marsala. I'm your girl for parsing through Eventbrite. Tell me about what you're looking for.")
-    return alexa.create_response(message=random.choice(start_greeting))
+@ask.intent("YesIntent")
+def next_round():
+
+    numbers = [randint(0, 9) for _ in range(3)]
+
+    round_msg = render_template('round', numbers=numbers)
+
+    session.attributes['numbers'] = numbers[::-1]  # reverse
+
+    return question(round_msg)
 
 
-@alexa.request("SessionEndedRequest")
-def session_ended_request_handler(request):
-    end_greeting = ('Goodbye!', 'Ciao!', 'Adios amigos!', 'Sayonara!', 'Au revoir!', 'TTFN Ta-TA for now!')
+@ask.intent("AnswerIntent", convert={'first': int, 'second': int, 'third': int})
+def answer(first, second, third):
 
-    return alexa.create_response(message=random.choice(end_greeting))
+    winning_numbers = session.attributes['numbers']
 
+    if [first, second, third] == winning_numbers:
 
-@alexa.intent_handler('GiveMeTheInfo')
-def get_event_info_handler(request):
-    """
-    This is the handler that for getting the event information of the request
+        msg = render_template('win')
 
-    :param request:
-    :return:
-    """
-    date_range = request.slots['DATEE']
-    event_keyword = request.slots['KEYWORDZ']
-    location = request.slots['LOCATION'] if request.slots['LOCATION'] else request.metadata['default_zipcode']
+    else:
 
-    """
-    TODO: Use the params to make Evenbrite API request and get the json response
-    """
+        msg = render_template('lose')
 
-    # FIXME: change the output parameter to API results
-    event_name = "Test Event"
-    event_description = "Test Description"
-    event_url = "https://www.eventbrite.com/"
-    event_time = "10/1/2016 7PM"
-    event_location = "Knoxville, Tennessee"
-
-    large_image_url = "https://s18.postimg.org/9wwg7x155/Event_Brite400.png"
-    small_image_url = "https://s10.postimg.org/epv8efskp/Event_Brite800.png"
-
-    card = alexa.create_card(title=event_name, content=event_description, card_type='Standard')
-    card['image'] = {"smallImageUrl": small_image_url,
-                     "largeImageUrl": large_image_url}
-
-    speech_message = "Looks like this fits the bill. There's a event called {} at {} at {}"\
-        .format(event_name, event_location, event_time)
-
-    return alexa.create_response(message=speech_message, card_obj=card)
+    return statement(msg)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 
-    import argparse
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--serve', '-s', action='store_true', default=False)
-    args = parser.parse_args()
-
-    if args.serve:
-        ###
-        # This will only be run if you try to run the server in local mode
-        ##
-        print('Serving ASK functionality locally.')
-        import flask
-
-        server = flask.Flask(__name__)
-
-
-        @server.route('/')
-        def alexa_skills_kit_requests():
-            request_obj = flask.request.get_json()
-            return lambda_handler(request_obj)
-
-
-        server.run()
+    app.run(debug=True)
