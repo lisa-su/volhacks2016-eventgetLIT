@@ -102,7 +102,7 @@ class PartyParrot:
             self.set_data({})
             return self.get_data()
 
-        your_keys = ['name', 'description', 'url', 'start', 'end', 'venue_id']
+        your_keys = ['name', 'description', 'url', 'start', 'end', 'venue_id', 'logo']
         new_dict = []
         count = 0
         for e in data_dict:
@@ -114,7 +114,9 @@ class PartyParrot:
 
                     new_dict[count]['location'] = venue.json()['name']
                     new_dict[count]['location_address'] = venue.json()['address']['localized_address_display']
-
+                elif k == "logo":
+                    new_dict[count]['small_image'] = e[k]['url']
+                    new_dict[count]['large_image'] = e[k]['original']['url']
                 elif isinstance(e[k], basestring):
                     new_dict[count][k] = e[k]
                 else:
