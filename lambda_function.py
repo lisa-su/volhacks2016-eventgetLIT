@@ -68,7 +68,9 @@ def get_welcome_response():
 
 def get_help_response():
     session_attributes = {}
-    speech_output = "You can aske me something like what's happening around Knoxville"
+    speech_output = """To use Party Parrot, tell me what type of event you'd be intersted in attending
+    with complete sentences, such as Find me events about food this week in Atlanta or Is there anything around
+     San Francisco this weekend."""
     reprompt_text = "I'm waiting..."
     should_end_session = False
 
@@ -98,7 +100,16 @@ def get_event_info(intent):
         result_msg = "Sorry, no result. Please try again."
     else:
         result = result[0]
-        result_msg = "Found the event {} on {} at {}.".format(result['name'], result['start'][:10], result['location'])
+        if search_keyword is not None:
+            repeat_msg = "I found events about {} around {} near {}.".format(search_keyword,
+                                                                            search_location,
+                                                                            result['start'][:10])
+        else:
+            repeat_msg = "I found events in {} around {}.".format(search_location,
+                                                                 result['start'][:10])
+        result_msg = "The event is {} on {} at {}.".format(result['name'], result['start'][:10], result['location'])
+
+        result_msg = repeat_msg + result_msg
 
     return build_response(session_attributes, build_speechlet_response(
         card_title, result_msg, "What can I help you with?", should_end_session))
