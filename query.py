@@ -94,7 +94,10 @@ class PartyParrot:
         response = requests.get(response_url)
 
         if 'events' in response.json().keys():
-            data_dict = response.json()["events"][:2]
+            if len(response.json()["events"]) > 3:
+                data_dict = response.json()["events"][:3]
+            else:
+                data_dict = response.json()["events"]
         else:
             self.set_data({})
             return self.get_data()
