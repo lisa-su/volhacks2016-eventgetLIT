@@ -103,7 +103,7 @@ def get_volhack_response(intent, session):
                          Only a scrub like a UGA grad would miss this.""" ,
                          """You're looking for plans today?
                          If you're not at Volhacks already you might as well be a Bama fan"""]
-    if set(volhacks_keyword.split(' ').map(lambda x: x.lower())).intersection(['ut', 'tennessee', 'knowxville', 'volhacks', 'volhack']):
+    if set(map(lambda x: x.lower(), volhacks_keyword.split(' '))).intersection(['ut', 'tennessee', 'knowxville', 'volhacks', 'volhack']):
         result_msg = choice(volhacks_response)
     else:
         result_msg = "Who really cares? You're in Vol Country now."
