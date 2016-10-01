@@ -34,9 +34,9 @@ def get_event_info(LOCATION, DATEE, KEYWORDZ):
     search_keyword = KEYWORDZ
 
     if not search_location:
-        search_location = "37996"
+        search_location = "Knoxville"
     if not search_date:
-        search_date = date.today().strftime('%m/%d/%Y')
+        search_date = date.today().strftime('%Y-%m-%d')
     if not search_keyword:
         msg = render_template('no_keyword')
         return question(msg)
@@ -45,9 +45,12 @@ def get_event_info(LOCATION, DATEE, KEYWORDZ):
                                  date=search_date)
 
     query = PartyParrot()
-    result = query.get_events(search_location, search_date, search_keyword)[0]
-
-    result_msg = render_template('result', name=result['name'], date=result['start'][:10],
+    result = query.get_events(search_location, search_date, search_keyword)
+    if len(result) == 0:
+        result_msg = render_template('empty')
+    else:
+        result = result[0]
+        result_msg = render_template('result', name=result['name'], date=result['start'][:10],
                                            location=result['location'])
 
     #return statement(search_msg)

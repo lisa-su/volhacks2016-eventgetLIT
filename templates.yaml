@@ -1,4 +1,4 @@
-welcome: Hi there. Start quering
+welcome: Hi there. Start querying
 welcome_1: Hi guys. Tnis is Marsala. I'm your girl for parsing through Eventbrite. Tell me about what you're looking for.
 welcome_2: How YOUUU duuin brah? This is Marsala, your eventbrite asssistant coming to you live from the inside of the cylindrical container. Hit me with it.
 welcome_3: Greetings earthlings. This is Mar-Sala. An advanced form of intelligence, the brain child of mixing Star Trek and Star Worlds. Please specify the parameters of your query
@@ -8,6 +8,8 @@ no_keyword: Sorry, I cannot understand you.
 repeat: Searching for {{keyword}} on {{date}} at {{location}}.
 
 result: Found the event {{name}} on {{date}} at {{location}}.
+
+empty: Sorry, no events.
 
 round: Can you repeat the numbers {{ numbers|join(", ") }} backwards?
 
