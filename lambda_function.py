@@ -142,17 +142,17 @@ def get_event_info(intent, session):
     else:
         this_event = result.pop(0)
         if search_keyword is not None:
-            repeat_msg = "I found events about {} around {} near {}.".format(search_keyword,
-                                                                             search_location,
-                                                                             this_event['start'][:10])
+            repeat_msg = "I found events about {} around {} near the date {}.".format(search_keyword,
+                                                                                      search_location,
+                                                                                      this_event['start'][:10])
         else:
-            repeat_msg = "I found events in {} around {}.".format(search_location,
-                                                                  this_event['start'][:10])
+            repeat_msg = "I found events in {} around the date {}.".format(search_location,
+                                                                           this_event['start'][:10])
 
         session_attributes = create_remain_result_attributes(result)
-        result_msg = "Found the event {} on {} at {}.".format(this_event['name'],
-                                                              this_event['start'][:10],
-                                                              this_event['location'])
+        result_msg = "The event is {} on {} at {}.".format(this_event['name'],
+                                                           this_event['start'][:10],
+                                                           this_event['location'])
 
         result_msg = repeat_msg + result_msg
 
