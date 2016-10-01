@@ -1,6 +1,7 @@
 import requests
 import datetime
 import pprint
+import calendar
 
 
 class PartyParrot:
@@ -26,21 +27,41 @@ class PartyParrot:
         return self.data
 
     @staticmethod
-    def format_date(date):
+    def format_date(date, type="start"):
         if len(date) == 10 and ("W" not in date):
-            return date + "T00:00:01"
+            if type == "start":
+                return date + "T00:00:01"
+            else:
+                return date + "T23:59:59"
         elif len(date) == 7 and ("W" not in date):
-            return date + "-01T00:00:01"
+            if type == "start":
+                return date + "-01T00:00:01"
+            else:
+                return date + "-" + str(calendar.monthrange(int(date[:4]), int(date[5:]))[1]) + "T23:59:59"
         elif len(date) == 4 and ("X" not in date):
-            return date + "-01-01T00:00:01"
+            if type == "start":
+                return date + "-01-01T00:00:01"
+            else:
+                return date + "-12-31T23:59:59"
         elif len(date) == 4:
-            return date[:-1] + "0-01-01T00:00:01"
+            if type == "start":
+                return date[:-1] + "0-01-01T00:00:01"
+            else:
+                return date[:-1] + "9-12-31T23:59:59"
         elif len(date) in (7, 8) and ("W" in date) and ("WI" not in date):
-            date_time = datetime.datetime.strptime(date + ' MON', "%Y-W%U %a")
-            return str(date_time).replace(" ", "T")
+            if type == "start":
+                date_time = datetime.datetime.strptime(date + ' SUN', "%Y-W%U %a")
+                return str(date_time)[:10] + "T00:00:01"
+            else:
+                date_time = datetime.datetime.strptime(date + ' SAT', "%Y-W%U %a")
+                return str(date_time)[:10] + "T23:59:59"
         elif len(date) >= 10:
-            date_time = datetime.datetime.strptime(date[:-3] + ' SAT', "%Y-W%U %a")
-            return str(date_time).replace(" ", "T")
+            if type == "start":
+                date_time = datetime.datetime.strptime(date[:-3] + ' SAT', "%Y-W%U %a")
+                return str(date_time)[:10] + "T00:00:01"
+            else:
+                date_time = datetime.datetime.strptime(date[:6] + str(int(date[6:-3]) + 1) + ' SUN', "%Y-W%U %a")
+                return str(date_time)[:10] + "T23:59:59"
         else:
             return None
 
@@ -52,13 +73,18 @@ class PartyParrot:
         response_url += "&location.address=" + location
 
         if date is None:
-            response_url += "&start_date.keyword=today"
+            start = datetime.datetime.today().strftime('%Y-%m-%d') + "T00:00:01"
+            end = datetime.datetime.today().strftime('%Y-%m-%d') + "T23:59:59"
+            response_url += "&start_date.range_start=" + start + "&start_date.range_end=" + end
         else:
-            string_date = self.format_date(date)
-            if string_date is None:
-                response_url += "&start_date.keyword=today"
+            start_date = self.format_date(date, "start")
+            end_date = self.format_date(date, "end")
+            if start_date is None:
+                start = datetime.datetime.today().strftime('%Y-%m-%d') + "T00:00:01"
+                end = datetime.datetime.today().strftime('%Y-%m-%d') + "T23:59:59"
+                response_url += "&start_date.range_start=" + start + "&start_date.range_end=" + end
             else:
-                response_url += "&start_date.range_start=" + string_date
+                response_url += "&start_date.range_start=" + start_date + "&start_date.range_end=" + end_date
 
         if keywords is not None:
             response_url += "&q=" + keywords
@@ -69,6 +95,9 @@ class PartyParrot:
 
         if 'events' in response.json().keys():
             data_dict = response.json()["events"][:2]
+        else:
+            self.set_data({})
+            return self.get_data()
 
         your_keys = ['name', 'description', 'url', 'start', 'end', 'venue_id']
         new_dict = []
@@ -97,6 +126,6 @@ class PartyParrot:
 
         return self.get_data()
 
-a = PartyParrot()
-pprint.pprint(a.get_events("Atlanta", "2016-10-02"))
+#a = PartyParrot()
+#pprint.pprint(a.get_events("Atlanta", "2016-10-02", "food"))
 
