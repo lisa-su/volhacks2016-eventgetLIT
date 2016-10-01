@@ -1,18 +1,29 @@
 import requests
 import datetime
+import pprint
 
 
 class PartyParrot:
     def __init__(self):
         self.data = {}
         self.url = "https://www.eventbriteapi.com/v3/events/search/"
+        self.venue_url = "https://www.eventbriteapi.com/v3/venues/"
         self.token = "JMZ7LLBPYVZL3NEUIF66"
 
     def get_url(self):
         return self.url
 
+    def get_venue_url(self):
+        return self.venue_url
+
     def get_token(self):
         return self.token
+
+    def set_data(self, d):
+        self.data = d
+
+    def get_data(self):
+        return self.data
 
     @staticmethod
     def format_date(date):
@@ -56,8 +67,36 @@ class PartyParrot:
 
         response = requests.get(response_url)
 
-        print response.json()["events"][0]
+        if 'events' in response.json().keys():
+            data_dict = response.json()["events"][:2]
 
+        your_keys = ['name', 'description', 'url', 'start', 'end', 'venue_id']
+        new_dict = []
+        count = 0
+        for e in data_dict:
+            new_dict.append({})
+            for k in your_keys:
+                if k == 'venue_id':
+                    temp_url = self.get_venue_url() + e[k] + "/" + "?token=" + self.get_token()
+                    venue = requests.get(temp_url)
+
+                    new_dict[count]['location'] = venue.json()['name']
+                    new_dict[count]['location_address'] = venue.json()['address']['localized_address_display']
+
+                elif isinstance(e[k], basestring):
+                    new_dict[count][k] = e[k]
+                else:
+                    if 'text' in e[k].keys():
+                        new_dict[count][k] = e[k]['text']
+                    elif 'local' in e[k].keys():
+                        new_dict[count][k] = e[k]['local']
+
+            count += 1
+
+        self.set_data(new_dict)
+
+        return self.get_data()
 
 a = PartyParrot()
-a.get_events("Atlanta", "2016-10-02", "python")
+pprint.pprint(a.get_events("Atlanta", "2016-10-02"))
+
