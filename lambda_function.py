@@ -58,9 +58,9 @@ def get_event_info_handler(request):
     :param request:
     :return:
     """
-    date_range = request.slots['DATE1']
-    event_keyword = request.slots['Keyword']
-    location = request.slots['Location']
+    date_range = request.slots['DATEE']
+    event_keyword = request.slots['KEYWORDZ']
+    location = request.slots['LOCATION']
 
     """
     TODO: Use the params to make Evenbrite API request and get the json response
@@ -73,8 +73,8 @@ def get_event_info_handler(request):
     event_time = "10/1/2016 7PM"
     event_location = "Knoxville, Tennessee"
 
-    large_image_url = "http://www.underconsideration.com/brandnew/archives/eventbrite_monogram.jpg"
-    small_image_url = ""
+    large_image_url = "https://s18.postimg.org/9wwg7x155/Event_Brite400.png"
+    small_image_url = "https://s10.postimg.org/epv8efskp/Event_Brite800.png"
 
     card = alexa.create_card(title=event_name, content=event_description, card_type='Standard')
     card['image'] = {"smallImageUrl": small_image_url,
