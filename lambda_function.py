@@ -56,7 +56,7 @@ def handle_session_end_request():
     should_end_session = True
 
     return build_response(session_attributes, build_speechlet_response(
-        card_title, speech_output, speech_output, should_end_session
+        card_title, speech_output, speech_output, should_end_session, False
     ))
 
 
@@ -72,7 +72,7 @@ def get_welcome_response():
     reprompt_text = "I'm waiting..."
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
-        card_title, speech_output, reprompt_text, should_end_session))
+        card_title, speech_output, reprompt_text, should_end_session, False))
 
 
 def get_help_response():
@@ -82,7 +82,7 @@ def get_help_response():
     should_end_session = False
 
     return build_response(session_attributes, build_speechlet_response(
-        "Help", speech_output, reprompt_text, should_end_session
+        "Help", speech_output, reprompt_text, should_end_session, False
     ))
 
 
@@ -131,15 +131,19 @@ def get_event_info(intent, session):
 
     if len(result) == 0:
         result_msg = "Sorry, no result. Please try again."
+
+        return build_response(session_attributes, build_speechlet_response(
+            card_title, result_msg, repromt_text, should_end_session, False))
     else:
         this_event = result.pop(0)
         session_attributes = create_remain_result_attributes(result)
         result_msg = "Found the event {} on {} at {}.".format(this_event['name'],
                                                               this_event['start'][:10],
                                                               this_event['location'])
+        return build_response(session_attributes, build_speechlet_response(
+            card_title, result_msg, repromt_text, should_end_session, True, this_event['small_image'],
+            this_event['large_image'], this_event['url']))
 
-    return build_response(session_attributes, build_speechlet_response(
-        card_title, result_msg, repromt_text, should_end_session))
 
 
 def get_next_event(intent, session):
@@ -156,40 +160,27 @@ def get_next_event(intent, session):
         result_msg = "Found the event {} on {} at {}.".format(this_event['name'],
                                                               this_event['start'][:10],
                                                               this_event['location'])
+
+        return build_response(session_attributes, build_speechlet_response(
+            card_title, result_msg, repromt_text, should_end_session, True, this_event['small_image'],
+            this_event['large_image'], this_event['url']))
     else:
         result_msg = "There's no result to show."
 
-    return build_response(session_attributes, build_speechlet_response(
-        card_title, result_msg, repromt_text, should_end_session))
+        return build_response(session_attributes, build_speechlet_response(
+            card_title, result_msg, repromt_text, should_end_session, False))
 
 
-def build_speechlet_response(title, output, reprompt_text, should_end_session, small_image=None, large_image=None):
-
-    # TODO: make card item optional
-    card = {
-        "title": title,
-        "content": output
-    }
-
-    if small_image is None and large_image is None:
-        card['type'] = "Simple"
-    else:
-        card['type'] = "Standard"
-        card["image"] = {}
-        if small_image is None:
-            card["image"]["largeImageUrl"] = large_image
-        elif large_image is None:
-            card["image"]["smallImageUrl"] = small_image
-        else:
-            card["image"]["largeImageUrl"] = large_image
-            card["image"]["smallImageUrl"] = small_image
+def build_speechlet_response(title, output, reprompt_text, should_end_session, show_card=False, small_image=None,
+                             large_image=None, short_url=None):
+    if short_url is not None:
+        output += "\n" + short_url
 
     response = {
         "outputSpeech": {
             "type": "PlainText",
             "text": output
         },
-        "card": card,
         "reprompt": {
             "outputSpeech": {
                 "type": "PlainText",
@@ -198,6 +189,27 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session, s
         },
         "shouldEndSession": should_end_session
     }
+
+    if show_card:
+        card = {
+            "title": title,
+            "content": output
+        }
+
+        if small_image is None and large_image is None:
+            card['type'] = "Simple"
+        else:
+            card['type'] = "Standard"
+            card["image"] = {}
+            if small_image is None:
+                card["image"]["largeImageUrl"] = large_image
+            elif large_image is None:
+                card["image"]["smallImageUrl"] = small_image
+            else:
+                card["image"]["largeImageUrl"] = large_image
+                card["image"]["smallImageUrl"] = small_image
+
+        response["card"] = card
 
     return response
 

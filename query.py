@@ -2,6 +2,7 @@ import requests
 import datetime
 import pprint
 import calendar
+import json
 
 
 class PartyParrot:
@@ -108,21 +109,31 @@ class PartyParrot:
         for e in data_dict:
             new_dict.append({})
             for k in your_keys:
-                if k == 'venue_id':
+                if k == "url":
+
+                    google_url = "https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyCixNDku0flyN9PFJT8Y-pjE8yg9bfnErk"
+                    headers = {'content-type': 'application/json'}
+                    data = {
+                        "longUrl": e[k]
+                    }
+                    url_shortener = requests.post(google_url, json.dumps(data), headers=headers)
+                    new_dict[count][k] = url_shortener.json()['id']
+
+                elif k == 'venue_id':
                     temp_url = self.get_venue_url() + e[k] + "/" + "?token=" + self.get_token()
                     venue = requests.get(temp_url)
 
                     new_dict[count]['location'] = venue.json()['name']
                     new_dict[count]['location_address'] = venue.json()['address']['localized_address_display']
-                elif k == "logo":
+                elif k == "logo" and e[k] is not None:
                     new_dict[count]['small_image'] = e[k]['url']
                     new_dict[count]['large_image'] = e[k]['original']['url']
                 elif isinstance(e[k], basestring):
                     new_dict[count][k] = e[k]
                 else:
-                    if 'text' in e[k].keys():
+                    if e[k] is not None and 'text' in e[k].keys():
                         new_dict[count][k] = e[k]['text']
-                    elif 'local' in e[k].keys():
+                    elif e[k] is not None and 'local' in e[k].keys():
                         new_dict[count][k] = e[k]['local']
 
             count += 1
@@ -131,6 +142,6 @@ class PartyParrot:
 
         return self.get_data()
 
-#a = PartyParrot()
-#pprint.pprint(a.get_events("Atlanta", "2016-10-02", "food"))
+a = PartyParrot()
+pprint.pprint(a.get_events("Knoxville", "2016-10-01"))
 
