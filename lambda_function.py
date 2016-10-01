@@ -65,8 +65,8 @@ def get_welcome_response():
     card_title = "Party Parrot"
     welcome_options = ["Hello! Alexa here. Wanna tell me what type of events you're intersted in?",
                        "Hello! Alexa here. Wanna tell me what type of events you're intersted in?",
-                       "Bored? Wanna branch out? Let's me hook you up with something fun to do!",
-                       "Bored? Wanna branch out? Let's me hook you up with something fun to do!",
+                       "Bored? Wanna branch out? Let me hook you up with something fun to do!",
+                       "Bored? Wanna branch out? Let me hook you up with something fun to do!",
                        "Team Event-Get-LIT presents to you: Party Parrot, a game of event roulette"]
     speech_output = choice(welcome_options)
     reprompt_text = "I'm waiting..."
