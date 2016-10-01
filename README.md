@@ -1,3 +1,1 @@
 # eventgetLIT
-
-G
