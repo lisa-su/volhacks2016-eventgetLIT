@@ -174,8 +174,6 @@ def get_next_event(intent, session):
 
 def build_speechlet_response(title, output, reprompt_text, should_end_session, show_card=False, small_image=None,
                              large_image=None, short_url=None):
-    if short_url is not None:
-        output += "\n" + short_url
 
     response = {
         "outputSpeech": {
@@ -192,6 +190,9 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session, s
     }
 
     if show_card:
+        if short_url is not None:
+            output += "\n" + short_url
+
         card = {
             "title": title,
             "content": output
