@@ -1,6 +1,6 @@
 from datetime import date
 from query import PartyParrot
-
+from random import choice
 
 def lambda_handler(event, context):
     if (event["session"]["application"]["applicationId"] !=
@@ -61,7 +61,12 @@ def handle_session_end_request():
 def get_welcome_response():
     session_attributes = {}
     card_title = "Party Parrot"
-    speech_output = "Welcome to Party Parrot"
+    welcome_options = ["Hello! Alexa here. Wanna tell me what type of events you're intersted in?",
+                       "Hello! Alexa here. Wanna tell me what type of events you're intersted in?",
+                       "Bored? Wanna branch out? Let's me hook you up with something fun to do!",
+                       "Bored? Wanna branch out? Let's me hook you up with something fun to do!",
+                       "Team Event-Get-LIT presents to you: Party Parrot, a game of event roulette"]
+    speech_output = choice(welcome_options)
     reprompt_text = "I'm waiting..."
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
