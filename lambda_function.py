@@ -135,20 +135,33 @@ def get_next_event(intent, session):
         card_title, result_msg, repromt_text, should_end_session))
 
 
-def build_speechlet_response(title, output, reprompt_text, should_end_session):
+def build_speechlet_response(title, output, reprompt_text, should_end_session, small_image=None, large_image=None):
 
     # TODO: make card item optional
+    card = {
+        "title": title,
+        "content": output
+    }
+
+    if small_image is None and large_image is None:
+        card['type'] = "Simple"
+    else:
+        card['type'] = "Standard"
+        card["image"] = {}
+        if small_image is None:
+            card["image"]["largeImageUrl"] = large_image
+        elif large_image is None:
+            card["image"]["smallImageUrl"] = small_image
+        else:
+            card["image"]["largeImageUrl"] = large_image
+            card["image"]["smallImageUrl"] = small_image
 
     response = {
         "outputSpeech": {
             "type": "PlainText",
             "text": output
         },
-        "card": {
-            "type": "Simple",
-            "title": title,
-            "content": output
-        },
+        "card": card,
         "reprompt": {
             "outputSpeech": {
                 "type": "PlainText",
