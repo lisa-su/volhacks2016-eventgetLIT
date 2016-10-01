@@ -103,8 +103,10 @@ def get_volhack_response(intent, session):
                          Only a scrub like a <say-as interpret-as="spell-out">UGA</say-as> grad would miss this.""",
                          """You're looking for plans today?
                          If you're not at Volhacks already you might as well be a Bama fan"""]
-    if set(map(lambda x: x.lower(), volhacks_keyword.split(' '))).intersection(['ut', 'tennessee', 'knowxville', 'volhacks', 'volhack']):
+    if volhacks_keyword is not None and set(map(lambda x: x.lower(), volhacks_keyword.split(' '))).intersection(['ut', 'tennessee', 'knowxville', 'volhacks', 'volhack']):
         result_msg = choice(volhacks_response)
+    elif volhacks_keyword is None:
+        result_msg = "I don't understand what you said."
     else:
         result_msg = "Who really cares? You're in Big Orange Country now."
 
@@ -159,7 +161,6 @@ def get_event_info(intent, session):
 
         return build_response(session_attributes, build_speechlet_response(
             card_title, result_msg, repromt_text, should_end_session, True, sm, lg, u))
-
 
 
 def get_next_event(intent, session):
@@ -251,3 +252,4 @@ def build_response(session_attributes, speechlet_response):
         "sessionAttributes": session_attributes,
         "response": speechlet_response
     }
+
