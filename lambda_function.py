@@ -106,7 +106,7 @@ def get_volhack_response(intent, session):
     if set(map(lambda x: x.lower(), volhacks_keyword.split(' '))).intersection(['ut', 'tennessee', 'knowxville', 'volhacks', 'volhack']):
         result_msg = choice(volhacks_response)
     else:
-        result_msg = "Who really cares? You're in Vol Country now."
+        result_msg = "Who really cares? You're in Big Orange Country now."
 
     return build_response(session_attributes, build_speechlet_response(
         card_title, result_msg, repromt_text, should_end_session))
