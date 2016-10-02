@@ -63,8 +63,8 @@ def handle_session_end_request():
 def get_welcome_response():
     session_attributes = {}
     card_title = "Party Parrot"
-    welcome_options = ["Hello! Alexa here. Wanna tell me what type of events you're intersted in?",
-                       "Hello! Alexa here. Wanna tell me what type of events you're intersted in?",
+    welcome_options = ["Hello! Alexa here. Wanna tell me what type of events you're interested in?",
+                       "Hello! Alexa here. Wanna tell me what type of events you're interested in?",
                        "Bored? Wanna branch out? Let me hook you up with something fun to do!",
                        "Bored? Wanna branch out? Let me hook you up with something fun to do!",
                        "Team Event-Get-LIT presents to you: Party Parrot, a game of event roulette"]
@@ -77,7 +77,7 @@ def get_welcome_response():
 
 def get_help_response():
     session_attributes = {}
-    speech_output = """To use Party Parrot, tell me what type of event you'd be intersted in attending
+    speech_output = """To use Party Parrot, tell me what type of event you'd be interested in attending
     with complete sentences, such as Find me events about food this week in Atlanta or Is there anything around
      San Francisco this weekend."""
     reprompt_text = "I'm waiting..."
@@ -102,7 +102,7 @@ def get_volhack_response(intent, session):
     volhacks_response = ["""What's going on? Why, only Volhacks - the littest thing to happen on UT's campus.
     Except, well, when they crushed the Gators last week.""",
                          """"If you're looking for a great time, Volhacks is going on right now.
-                         Only a scrub like a <say-as interpret-as="spell-out">UGA</say-as> grad would miss this.""",
+                         Only a scrub like a U-G-A grad would miss this.""",
                          """You're looking for plans today?
                          If you're not at Volhacks already you might as well be a Bama fan"""]
     if volhacks_keyword is not None and set(map(lambda x: x.lower(), volhacks_keyword.split(' '))).intersection(['ut', 'tennessee', 'knowxville', 'volhacks', 'volhack']):
