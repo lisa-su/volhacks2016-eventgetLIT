@@ -1,0 +1,51 @@
+{
+  "intents": [
+    {
+      "intent": "AMAZON.HelpIntent"
+    }, 
+    {
+      "intent": "AMAZON.StopIntent"
+    }, 
+    {
+      "intent": "AMAZON.CancelIntent"
+    }, 
+    {
+      "intent": "GetNextIntent",
+      "slots": [
+        {
+          "name": "GetNext",
+          "type": "GetNextList"
+        }
+      ]
+
+    },
+    {
+      "intent": "VolHacksIntent",
+      "slots": [
+        {
+          "name": "VolHacks",
+          "type": "VH"
+        }
+      ]
+
+    },
+    
+    {
+      "intent": "GiveMeTheInfo", 
+      "slots": [
+        {
+          "name": "LOCATION", 
+          "type": "AMAZON.US_CITY"
+        }, 
+        {
+          "name": "DATEE", 
+          "type": "AMAZON.DATE"
+        }, 
+        {
+          "name": "KEYWORDZ", 
+          "type": "KEYWORDZLIST"
+        }
+      ]
+    }
+  ]
+}

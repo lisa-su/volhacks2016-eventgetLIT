@@ -52,16 +52,18 @@ def on_session_ended(session_ended_request, session):
 def handle_session_end_request():
     session_attributes = {}
     card_title = "Party Parrot - Thanks"
-    speech_output = "Thank you for using the Party Parrot"
+    speech_type = "SSML"
+    speech_output = "<speak><audio src=\"https://s3.amazonaws.com/audio-volhacks/CHuckminp.mp3\" /></speak>"
     should_end_session = True
 
     return build_response(session_attributes, build_speechlet_response(
-        card_title, speech_output, speech_output, should_end_session, False
+        card_title, speech_output, speech_output, should_end_session, False, output_speech_type=speech_type
     ))
 
 
 def get_welcome_response():
     session_attributes = {}
+    should_end_session = False
     card_title = "Party Parrot"
     welcome_options = ["Hello! Alexa here. Wanna tell me what type of events you're interested in?",
                        "Hello! Alexa here. Wanna tell me what type of events you're interested in?",
@@ -69,8 +71,9 @@ def get_welcome_response():
                        "Bored? Wanna branch out? Let me hook you up with something fun to do!",
                        "Team Event-Get-LIT presents to you: Party Parrot, a game of event roulette"]
     speech_output = choice(welcome_options)
+
     reprompt_text = "I'm waiting..."
-    should_end_session = False
+
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session, False))
 
@@ -215,19 +218,24 @@ def get_next_event(intent, session):
 
 
 def build_speechlet_response(title, output, reprompt_text, should_end_session, show_card=False, small_image=None,
-                             large_image=None, short_url=None):
+                             large_image=None, short_url=None, output_speech_type="PlainText", reprompt_type="PlainText"):
 
+    if output_speech_type == "SSML":
+        output_speech = {"type": "SSML",
+                         "ssml": output}
+    else:
+        output_speech = {"type": "PlainText",
+                         "text": output}
+
+    if reprompt_type == "SSML":
+        reprompt = {"type": "SSML",
+                    "ssml": reprompt_text}
+    else:
+        reprompt = {"type": "PlainText",
+                    "text": reprompt_text}
     response = {
-        "outputSpeech": {
-            "type": "PlainText",
-            "text": output
-        },
-        "reprompt": {
-            "outputSpeech": {
-                "type": "PlainText",
-                "text": reprompt_text
-            }
-        },
+        "outputSpeech": output_speech,
+        "reprompt": {"outputSpeech": reprompt},
         "shouldEndSession": should_end_session
     }
 
@@ -235,9 +243,7 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session, s
         if short_url is not None:
             output += "\n" + short_url
 
-        card = {
-            "title": title
-        }
+        card = {"title": title}
 
         if small_image is None and large_image is None:
             card['type'] = "Simple"

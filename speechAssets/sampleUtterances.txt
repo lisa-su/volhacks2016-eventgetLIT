@@ -1,0 +1,192 @@
+GetNextIntent not interested {GetNext}
+GetNextIntent {GetNext}
+VolHacksIntent Tell me what's going on at the {VolHacks}
+GiveMeTheInfo Find me events about around {LOCATION} about {KEYWORDZ} around {DATEE}
+GiveMeTheInfo Find me events about around {LOCATION} about {KEYWORDZ} {DATEE}
+GiveMeTheInfo Find me events about {KEYWORDZ}
+GiveMeTheInfo Find me events about {KEYWORDZ} around {DATEE}
+GiveMeTheInfo Find me events about {KEYWORDZ} around {DATEE} around {LOCATION}
+GiveMeTheInfo Find me events about {KEYWORDZ} around {LOCATION}
+GiveMeTheInfo Find me events about {KEYWORDZ} around {LOCATION} around {DATEE}
+GiveMeTheInfo Find me events about {KEYWORDZ} around {LOCATION} around {DATEE}
+GiveMeTheInfo Find me events about {KEYWORDZ} around {LOCATION} on {DATEE}
+GiveMeTheInfo Find me events about {KEYWORDZ} around {LOCATION} on {DATEE}
+GiveMeTheInfo Find me events about {KEYWORDZ} around {LOCATION} {DATEE}
+GiveMeTheInfo Find me events about {KEYWORDZ} around {LOCATION} {DATEE}
+GiveMeTheInfo Find me events about {KEYWORDZ} on {DATEE}
+GiveMeTheInfo Find me events about {KEYWORDZ} on {DATEE} around {LOCATION}
+GiveMeTheInfo Find me events about {KEYWORDZ} {DATEE} around {LOCATION}
+GiveMeTheInfo Find me events around {DATEE} around {LOCATION}
+GiveMeTheInfo Find me events around {DATEE} about {KEYWORDZ} around {LOCATION}
+GiveMeTheInfo Find me events around {DATEE} around {LOCATION} about {KEYWORDZ}
+GiveMeTheInfo Find me events around {LOCATION}
+GiveMeTheInfo Find me events around {LOCATION} about {KEYWORDZ}
+GiveMeTheInfo Find me events around {LOCATION} on {DATEE}
+GiveMeTheInfo Find me events around {LOCATION} {DATEE}
+GiveMeTheInfo Find me events going on about {KEYWORDZ}
+GiveMeTheInfo Find me events going on about {KEYWORDZ} around {DATEE} around {LOCATION}
+GiveMeTheInfo Find me events going on about {KEYWORDZ} around {LOCATION} around {DATEE}
+GiveMeTheInfo Find me events going on about {KEYWORDZ} around {LOCATION} around {DATEE}
+GiveMeTheInfo Find me events going on about {KEYWORDZ} around {LOCATION} on {DATEE}
+GiveMeTheInfo Find me events going on about {KEYWORDZ} around {LOCATION} on {DATEE}
+GiveMeTheInfo Find me events going on about {KEYWORDZ} around {LOCATION} {DATEE}
+GiveMeTheInfo Find me events going on about {KEYWORDZ} around {LOCATION} {DATEE}
+GiveMeTheInfo Find me events going on about {KEYWORDZ} on {DATEE} around {LOCATION}
+GiveMeTheInfo Find me events going on about {KEYWORDZ} {DATEE} around {LOCATION}
+GiveMeTheInfo Find me events going on around {DATEE} about {KEYWORDZ} around {LOCATION}
+GiveMeTheInfo Find me events going on around {DATEE} around {LOCATION} about {KEYWORDZ}
+GiveMeTheInfo Find me events going on around {LOCATION}
+GiveMeTheInfo Find me events going on around {LOCATION} about {KEYWORDZ} around {DATEE}
+GiveMeTheInfo Find me events going on around {LOCATION} about {KEYWORDZ} on {DATEE}
+GiveMeTheInfo Find me events going on around {LOCATION} about {KEYWORDZ} {DATEE}
+GiveMeTheInfo Find me events going on on {DATEE}
+GiveMeTheInfo Find me events going on on {DATEE} about {KEYWORDZ} around {LOCATION}
+GiveMeTheInfo Find me events going on on {DATEE} around {LOCATION} about {KEYWORDZ}
+GiveMeTheInfo Find me events going on {DATEE}
+GiveMeTheInfo Find me events going on {DATEE} about {KEYWORDZ} around {LOCATION}
+GiveMeTheInfo Find me events going on {DATEE} around {LOCATION} about {KEYWORDZ}
+GiveMeTheInfo Find me events on {DATEE} about {KEYWORDZ} that are going on
+GiveMeTheInfo Find me events on {DATEE} that are going on
+GiveMeTheInfo Find me events on {DATEE} about {KEYWORDZ} around {LOCATION} that are going on
+GiveMeTheInfo Find me events on {DATEE} around {LOCATION} about {KEYWORDZ} going on
+GiveMeTheInfo Find me events {DATEE} going on
+GiveMeTheInfo Find me events {DATEE} about {KEYWORDZ} around {LOCATION} that are going on
+GiveMeTheInfo Find me events {DATEE} around {LOCATION} about {KEYWORDZ} that are going on
+GiveMeTheInfo Find me {KEYWORDZ} events
+GiveMeTheInfo Find me {KEYWORDZ} events around {DATEE}
+GiveMeTheInfo Find me {KEYWORDZ} events around {DATEE} around {LOCATION}
+GiveMeTheInfo Find me {KEYWORDZ} events around {LOCATION}
+GiveMeTheInfo Find me {KEYWORDZ} events around {LOCATION} around {DATEE}
+GiveMeTheInfo Find me {KEYWORDZ} events around {LOCATION} around {DATEE}
+GiveMeTheInfo Find me {KEYWORDZ} events around {LOCATION} on {DATEE}
+GiveMeTheInfo Find me {KEYWORDZ} events around {LOCATION} on {DATEE}
+GiveMeTheInfo Find me {KEYWORDZ} events around {LOCATION} {DATEE}
+GiveMeTheInfo Find me {KEYWORDZ} events around {LOCATION} {DATEE}
+GiveMeTheInfo Find me {KEYWORDZ} events on {DATEE}
+GiveMeTheInfo Find me {KEYWORDZ} events on {DATEE} around {LOCATION}
+GiveMeTheInfo Find me {KEYWORDZ} events {DATEE} around {LOCATION}
+GiveMeTheInfo Is there anything about around {LOCATION} about {KEYWORDZ} around {DATEE} going on
+GiveMeTheInfo Is there anything about around {LOCATION} about {KEYWORDZ} {DATEE} going on
+GiveMeTheInfo Is there anything about {KEYWORDZ} around {DATEE} going on
+GiveMeTheInfo Is there anything about {KEYWORDZ} around {DATEE} around {LOCATION} going on
+GiveMeTheInfo Is there anything about {KEYWORDZ} around {LOCATION} around {DATEE} going on
+GiveMeTheInfo Is there anything about {KEYWORDZ} around {LOCATION} around {DATEE} going on
+GiveMeTheInfo Is there anything about {KEYWORDZ} around {LOCATION} going on
+GiveMeTheInfo Is there anything about {KEYWORDZ} around {LOCATION} on {DATEE} going on
+GiveMeTheInfo Is there anything about {KEYWORDZ} around {LOCATION} on {DATEE} going on
+GiveMeTheInfo Is there anything about {KEYWORDZ} around {LOCATION} {DATEE} going on
+GiveMeTheInfo Is there anything about {KEYWORDZ} around {LOCATION} {DATEE} going on
+GiveMeTheInfo Is there anything about {KEYWORDZ} going on
+GiveMeTheInfo Is there anything about {KEYWORDZ} on {DATEE} around {LOCATION} going on
+GiveMeTheInfo Is there anything about {KEYWORDZ} on {DATEE} going on
+GiveMeTheInfo Is there anything about {KEYWORDZ} {DATEE} around {LOCATION} going on
+GiveMeTheInfo Is there anything around {DATEE} around {LOCATION} going on
+GiveMeTheInfo Is there anything around {DATEE} about {KEYWORDZ} around {LOCATION} going on
+GiveMeTheInfo Is there anything around {DATEE} around {LOCATION} about {KEYWORDZ} going on
+GiveMeTheInfo Is there anything around {LOCATION} about {KEYWORDZ} going on
+GiveMeTheInfo Is there anything around {LOCATION} going on
+GiveMeTheInfo Is there anything around {LOCATION} on {DATEE} going on
+GiveMeTheInfo Is there anything around {LOCATION} {DATEE} going on
+GiveMeTheInfo Is there anything going on about {KEYWORDZ}
+GiveMeTheInfo Is there anything going on about {KEYWORDZ} around {DATEE} around {LOCATION}
+GiveMeTheInfo Is there anything going on about {KEYWORDZ} around {LOCATION} around {DATEE}
+GiveMeTheInfo Is there anything going on about {KEYWORDZ} around {LOCATION} around {DATEE}
+GiveMeTheInfo Is there anything going on about {KEYWORDZ} around {LOCATION} on {DATEE}
+GiveMeTheInfo Is there anything going on about {KEYWORDZ} around {LOCATION} on {DATEE}
+GiveMeTheInfo Is there anything going on about {KEYWORDZ} around {LOCATION} {DATEE}
+GiveMeTheInfo Is there anything going on about {KEYWORDZ} around {LOCATION} {DATEE}
+GiveMeTheInfo Is there anything going on about {KEYWORDZ} on {DATEE} around {LOCATION}
+GiveMeTheInfo Is there anything going on about {KEYWORDZ} {DATEE} around {LOCATION}
+GiveMeTheInfo Is there anything going on around {DATEE} about {KEYWORDZ} around {LOCATION}
+GiveMeTheInfo Is there anything going on around {DATEE} around {LOCATION} about {KEYWORDZ}
+GiveMeTheInfo Is there anything going on around {LOCATION}
+GiveMeTheInfo Is there anything going on around {LOCATION} about {KEYWORDZ} around {DATEE}
+GiveMeTheInfo Is there anything going on around {LOCATION} about {KEYWORDZ} on {DATEE}
+GiveMeTheInfo Is there anything going on around {LOCATION} about {KEYWORDZ} {DATEE}
+GiveMeTheInfo Is there anything going on on {DATEE}
+GiveMeTheInfo Is there anything going on on {DATEE} about {KEYWORDZ} around {LOCATION}
+GiveMeTheInfo Is there anything going on on {DATEE} around {LOCATION} about {KEYWORDZ}
+GiveMeTheInfo Is there anything going on {DATEE}
+GiveMeTheInfo Is there anything going on {DATEE} about {KEYWORDZ} around {LOCATION}
+GiveMeTheInfo Is there anything going on {DATEE} around {LOCATION} about {KEYWORDZ}
+GiveMeTheInfo Is there anything on {DATEE} about {KEYWORDZ} going on
+GiveMeTheInfo Is there anything on {DATEE} going on
+GiveMeTheInfo Is there anything on {DATEE} about {KEYWORDZ} around {LOCATION} going on
+GiveMeTheInfo Is there anything on {DATEE} around {LOCATION} about {KEYWORDZ} going on
+GiveMeTheInfo Is there anything {DATEE} going on
+GiveMeTheInfo Is there anything {DATEE} about {KEYWORDZ} around {LOCATION} going on
+GiveMeTheInfo Is there anything {DATEE} around {LOCATION} about {KEYWORDZ} going on
+GiveMeTheInfo Is there anything {KEYWORDZ} around {DATEE} going on
+GiveMeTheInfo Is there anything {KEYWORDZ} around {DATEE} around {LOCATION} going on
+GiveMeTheInfo Is there anything {KEYWORDZ} around {LOCATION} around {DATEE} going on
+GiveMeTheInfo Is there anything {KEYWORDZ} around {LOCATION} around {DATEE} going on
+GiveMeTheInfo Is there anything {KEYWORDZ} around {LOCATION} going on
+GiveMeTheInfo Is there anything {KEYWORDZ} around {LOCATION} on {DATEE} going on
+GiveMeTheInfo Is there anything {KEYWORDZ} around {LOCATION} on {DATEE} going on
+GiveMeTheInfo Is there anything {KEYWORDZ} around {LOCATION} {DATEE} going on
+GiveMeTheInfo Is there anything {KEYWORDZ} around {LOCATION} {DATEE} going on
+GiveMeTheInfo Is there anything {KEYWORDZ} going on
+GiveMeTheInfo Is there anything {KEYWORDZ} on {DATEE} around {LOCATION} going on
+GiveMeTheInfo Is there anything {KEYWORDZ} on {DATEE} going on
+GiveMeTheInfo Is there anything {KEYWORDZ} {DATEE} around {LOCATION} going on
+GiveMeTheInfo Look up events about around {LOCATION} about {KEYWORDZ} around {DATEE} that are going on
+GiveMeTheInfo Look up events about around {LOCATION} about {KEYWORDZ} {DATEE} that are going on
+GiveMeTheInfo Look up events about {KEYWORDZ} around {DATEE} that are going on
+GiveMeTheInfo Look up events about {KEYWORDZ} around {DATEE} around {LOCATION} that are going on
+GiveMeTheInfo Look up events about {KEYWORDZ} around {LOCATION} around {DATEE} that are going on
+GiveMeTheInfo Look up events about {KEYWORDZ} around {LOCATION} around {DATEE} that are going on
+GiveMeTheInfo Look up events about {KEYWORDZ} around {LOCATION} on {DATEE} that are going on
+GiveMeTheInfo Look up events about {KEYWORDZ} around {LOCATION} on {DATEE} that are going on
+GiveMeTheInfo Look up events about {KEYWORDZ} around {LOCATION} that are going on
+GiveMeTheInfo Look up events about {KEYWORDZ} around {LOCATION} {DATEE} that are going on
+GiveMeTheInfo Look up events about {KEYWORDZ} around {LOCATION} {DATEE} that are going on
+GiveMeTheInfo Look up events about {KEYWORDZ} on {DATEE} around {LOCATION} that are going on
+GiveMeTheInfo Look up events about {KEYWORDZ} on {DATEE} that are going on
+GiveMeTheInfo Look up events about {KEYWORDZ} that are going on
+GiveMeTheInfo Look up events about {KEYWORDZ} {DATEE} around {LOCATION} that are going on
+GiveMeTheInfo Look up events around {DATEE} around {LOCATION} that are going on
+GiveMeTheInfo Look up events around {DATEE} about {KEYWORDZ} around {LOCATION} that are going on
+GiveMeTheInfo Look up events around {DATEE} around {LOCATION} about {KEYWORDZ} that are going on
+GiveMeTheInfo Look up events around {LOCATION} about {KEYWORDZ} that are going on
+GiveMeTheInfo Look up events around {LOCATION} on {DATEE} that are going on
+GiveMeTheInfo Look up events around {LOCATION} that are going on
+GiveMeTheInfo Look up events around {LOCATION} {DATEE} that are going on
+GiveMeTheInfo Look up events going on about {KEYWORDZ}
+GiveMeTheInfo Look up events going on about {KEYWORDZ} around {DATEE} around {LOCATION}
+GiveMeTheInfo Look up events going on about {KEYWORDZ} around {LOCATION} around {DATEE}
+GiveMeTheInfo Look up events going on about {KEYWORDZ} around {LOCATION} around {DATEE}
+GiveMeTheInfo Look up events going on about {KEYWORDZ} around {LOCATION} on {DATEE}
+GiveMeTheInfo Look up events going on about {KEYWORDZ} around {LOCATION} on {DATEE}
+GiveMeTheInfo Look up events going on about {KEYWORDZ} around {LOCATION} {DATEE}
+GiveMeTheInfo Look up events going on about {KEYWORDZ} around {LOCATION} {DATEE}
+GiveMeTheInfo Look up events going on about {KEYWORDZ} on {DATEE} around {LOCATION}
+GiveMeTheInfo Look up events going on about {KEYWORDZ} {DATEE} around {LOCATION}
+GiveMeTheInfo Look up events going on around {DATEE} about {KEYWORDZ} around {LOCATION}
+GiveMeTheInfo Look up events going on around {DATEE} around {LOCATION} about {KEYWORDZ}
+GiveMeTheInfo Look up events going on around {LOCATION}
+GiveMeTheInfo Look up events going on around {LOCATION} about {KEYWORDZ} around {DATEE}
+GiveMeTheInfo Look up events going on around {LOCATION} about {KEYWORDZ} on {DATEE}
+GiveMeTheInfo Look up events going on around {LOCATION} about {KEYWORDZ} {DATEE}
+GiveMeTheInfo Look up events going on on {DATEE}
+GiveMeTheInfo Look up events going on on {DATEE} about {KEYWORDZ} around {LOCATION}
+GiveMeTheInfo Look up events going on on {DATEE} around {LOCATION} about {KEYWORDZ}
+GiveMeTheInfo Look up events going on {DATEE}
+GiveMeTheInfo Look up events going on {DATEE} about {KEYWORDZ} around {LOCATION}
+GiveMeTheInfo Look up events going on {DATEE} around {LOCATION} about {KEYWORDZ}
+GiveMeTheInfo Look up events on {DATEE} about {KEYWORDZ} that are going on
+GiveMeTheInfo Look up events on {DATEE} that are going on
+GiveMeTheInfo Look up events on {DATEE} about {KEYWORDZ} around {LOCATION} that are going on
+GiveMeTheInfo Look up events on {DATEE} around {LOCATION} about {KEYWORDZ} that are going on
+GiveMeTheInfo Look up events {DATEE} that are going on
+GiveMeTheInfo Look up events {DATEE} about {KEYWORDZ} around {LOCATION} that are going on
+GiveMeTheInfo Look up events {DATEE} around {LOCATION} about {KEYWORDZ} that are going on
+GiveMeTheInfo Look up {KEYWORDZ} events going on
+GiveMeTheInfo Look up {KEYWORDZ} events going on around {DATEE} around {LOCATION}
+GiveMeTheInfo Look up {KEYWORDZ} events going on around {LOCATION} around {DATEE}
+GiveMeTheInfo Look up {KEYWORDZ} events going on around {LOCATION} around {DATEE}
+GiveMeTheInfo Look up {KEYWORDZ} events going on around {LOCATION} on {DATEE}
+GiveMeTheInfo Look up {KEYWORDZ} events going on around {LOCATION} on {DATEE}
+GiveMeTheInfo Look up {KEYWORDZ} events going on around {LOCATION} {DATEE}
+GiveMeTheInfo Look up {KEYWORDZ} events going on around {LOCATION} {DATEE}
+GiveMeTheInfo Look up {KEYWORDZ} events going on on {DATEE} around {LOCATION}
+GiveMeTheInfo Look up {KEYWORDZ} events going on {DATEE} around {LOCATION}
