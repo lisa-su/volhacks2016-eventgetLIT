@@ -77,7 +77,9 @@ def get_welcome_response():
 
 def get_help_response():
     session_attributes = {}
-    speech_output = "You can aske me something like what's happening around Knoxville"
+    speech_output = """To use Party Parrot, tell me what type of event you'd be intersted in attending
+    with complete sentences, such as Find me events about food this week in Atlanta or Is there anything around
+     San Francisco this weekend."""
     reprompt_text = "I'm waiting..."
     should_end_session = False
 
@@ -139,10 +141,20 @@ def get_event_info(intent, session):
             card_title, result_msg, repromt_text, should_end_session, False))
     else:
         this_event = result.pop(0)
+        if search_keyword is not None:
+            repeat_msg = "I found events about {} around {} near the date {}.".format(search_keyword,
+                                                                                      search_location,
+                                                                                      this_event['start'][:10])
+        else:
+            repeat_msg = "I found events in {} around the date {}.".format(search_location,
+                                                                           this_event['start'][:10])
+
         session_attributes = create_remain_result_attributes(result)
-        result_msg = "Found the event {} on {} at {}.".format(this_event['name'],
-                                                              this_event['start'][:10],
-                                                              this_event['location'])
+        result_msg = "The event is {} on {} at {}.".format(this_event['name'],
+                                                           this_event['start'][:10],
+                                                           this_event['location'])
+
+        result_msg = repeat_msg + result_msg
 
         if 'small_image' in this_event.keys():
             sm = this_event['small_image']
@@ -224,14 +236,15 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session, s
             output += "\n" + short_url
 
         card = {
-            "title": title,
-            "content": output
+            "title": title
         }
 
         if small_image is None and large_image is None:
             card['type'] = "Simple"
+            card["content"] = output
         else:
             card['type'] = "Standard"
+            card["text"] = output
             card["image"] = {}
             if small_image is None:
                 card["image"]["largeImageUrl"] = large_image
