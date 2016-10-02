@@ -236,14 +236,15 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session, s
             output += "\n" + short_url
 
         card = {
-            "title": title,
-            "content": output
+            "title": title
         }
 
         if small_image is None and large_image is None:
             card['type'] = "Simple"
+            card["content"] = output
         else:
             card['type'] = "Standard"
+            card["text"] = output
             card["image"] = {}
             if small_image is None:
                 card["image"]["largeImageUrl"] = large_image
